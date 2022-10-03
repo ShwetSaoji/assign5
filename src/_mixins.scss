@@ -1,35 +1,33 @@
-
-@mixin backImage($image, $position, $origin: 0) {
-    background: url($image) $position $origin;
+@mixin wt_and_ht($width, $height) {
+  width: $width;
+  height: $height;
 }
 
-@mixin setBoxProperties($width, $height, $margin: 0) {
-    width: $width;
-    height: $height;
-    margin: $margin;
+@mixin socialMediaImg($offest:  0px) {
+  background:url($socialMediaImg) -38px * $offest 0;
 }
 
-@mixin setHeaderProperties($color, $font-weight, $font-size, $line-height: 0) {
-    color: $color;
-    font-weight: $font-weight;
-    font-size: $font-size;
-    line-height: $line-height;
+@mixin navbar($width, $height, $float) {
+  @include wt_and_ht($width, $height);
+  float: $float;
 }
 
-@mixin largeScreenMediaQuery {
-    @media (max-width: #{$large-screen-breakpoint}) {
-        @content;
+@mixin headers($color, $fnt-wt, $fnt-size, $li-ht: 0) {
+  color: $color;
+  font-weight:$fnt-wt;
+  font-size:$fnt-size;
+  line-height:$li-ht;
+}
+
+@mixin contentStyles($width, $float) {
+  width: $width;
+  float: $float;
+}
+
+@mixin insertMediaQuery($args) {
+  @if length($args) == 1 {
+    @media (max-width: nth($args, 1)) {
+      @content;
     }
-}
-
-@mixin mediumScreenMediaQuery {
-    @media (max-width: #{$medium-screen-breakpoint}) {
-        @content;
-    }
-}
-
-@mixin smallScreenMediaQuery {
-    @media (max-width: #{$small-screen-breakpoint}) {
-        @content;
-    }
+  }
 }
